@@ -1,0 +1,25 @@
+unit unt_manut_senha;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  Tfrm_manut_senha = class(TForm)
+    GroupBox1: TGroupBox;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_manut_senha: Tfrm_manut_senha;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,84 @@
+unit unt_principal;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, ComCtrls, StdCtrls, Buttons;
+
+type
+  Tfrm_principal = class(TForm)
+    MainMenu1: TMainMenu;
+    Opes1: TMenuItem;
+    Alterarsenha1: TMenuItem;
+    Sair1: TMenuItem;
+    N1: TMenuItem;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    StatusBar1: TStatusBar;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    BitBtn9: TBitBtn;
+    BitBtn10: TBitBtn;
+    BitBtn11: TBitBtn;
+    BitBtn12: TBitBtn;
+    BitBtn13: TBitBtn;
+    BitBtn14: TBitBtn;
+    BitBtn15: TBitBtn;
+    BitBtn16: TBitBtn;
+    BitBtn17: TBitBtn;
+    BitBtn18: TBitBtn;
+    BitBtn19: TBitBtn;
+    BitBtn20: TBitBtn;
+    Label1: TLabel;
+    Label2: TLabel;
+    BitBtn21: TBitBtn;
+    BitBtn22: TBitBtn;
+    procedure Sair1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_principal: Tfrm_principal;
+
+implementation
+
+uses unt_aboutbox;
+
+{$R *.dfm}
+
+procedure sair_do_sistema;
+begin
+	     	showmessage('Obrigado por utilizar nosso sistema!!!');
+	     	application.terminate;
+end;
+
+procedure Tfrm_principal.Sair1Click(Sender: TObject);
+
+ var
+ confirmar:integer;
+  begin
+  confirmar:=  application.messagebox('Deseja sair do sistema?','Asgard',mb_iconquestion+mb_yesno);
+
+	if (confirmar=idyes) then
+	    begin
+	     	sair_do_sistema;
+	    end;
+end;
+
+procedure Tfrm_principal.N1Click(Sender: TObject);
+begin
+frm_about.show;
+end;
+
+end.
