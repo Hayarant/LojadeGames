@@ -8,8 +8,8 @@ Obs:  Ele esta fazendo a consultar certo, porém na hora de passar as variáveis
 <li>
 <a href='ENDEREÇO DO SEU LINK AQUI'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 <ul>
-<li><a href='platagen'  onClick="<?php $_SESSION['genero'] = '1'; $_SESSION['plataforma'] = '1'; ?>">Ação</a></li>
-<li><a href='platagen'  onClick="<?php $_SESSION['genero'] = '1'; $_SESSION['plataforma'] = '2'; ?>">Aventura</a></li>
+<li><a href='platagen'  onClick="<?php $_SESSION['plataforma'] = '1'; $_SESSION['genero'] = '1'; ?>">Ação</a></li>
+<li><a href='platagen'  onClick="<?php $_SESSION['plataforma'] = '1'; $_SESSION['genero'] = '2'; ?>">Aventura</a></li>
 ...
 ---------------------------------------------------
 
