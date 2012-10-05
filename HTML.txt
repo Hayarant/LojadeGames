@@ -1,3 +1,120 @@
-<html>
-ae
-</html>
+Menu index
+
+Obs:  Ele esta fazendo a consultar certo, porém na hora de passar as variáveis para a outra página ele passa o ultimo
+      valor da variavél, n importa se clicar em "Ação" ou em "Aventura" o resultado é o de aventura.
+
+--------------------Parte do menu------------------
+
+<li>
+<a href='ENDEREÇO DO SEU LINK AQUI'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+<ul>
+<li><a href='platagen'  onClick="<?php $_SESSION['genero'] = '1'; $_SESSION['plataforma'] = '1'; ?>">Ação</a></li>
+<li><a href='platagen'  onClick="<?php $_SESSION['genero'] = '1'; $_SESSION['plataforma'] = '2'; ?>">Aventura</a></li>
+...
+---------------------------------------------------
+
+------------------Página "platagen"----------------
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+//Script desenvolvido por Victor Mangia em 04/09/2010 08:57
+//Twitter: @mangiavictor
+
+//quantidade de colunas
+$numeroColunas=4;    
+
+//quantidade de registros por pagina
+$numreg = 28;
+$genero= $_SESSION['genero'];
+$plataforma= $_SESSION['plataforma'];
+//echo $genero;
+//echo $plataforma;
+$sqlA="select * from produtos where (plataforma='$plataforma') and (genero='$genero')";
+
+//inicio do link para paginacao
+$inicioLink="platagen.php";
+
+//dados de conexao com o banco
+$servidor='localhost';
+$usuario='root';
+$senha='';
+$banco='asgard';
+
+mysql_connect($servidor, $usuario, $senha) or die('Não foi possivel conectar: ' . mysql_error()); 
+ mysql_select_db($banco) or die('Não pude selecionar o banco de dados');
+
+
+     
+if (!isset($_GET['pg1']))
+{
+$pg = 0;
+}
+$inicial = @$_GET['pg1'] * $numreg;
+
+$sql_conta = mysql_query($sqlA);
+$sql = mysql_query("$sqlA LIMIT $inicial, $numreg");
+$quantreg = mysql_num_rows($sql_conta); 
+?>
+<table width="940" border="0" align="center" cellspacing="15" cellpadding="15">
+<?php
+$cont = 1;
+while($res=mysql_fetch_array($sql))
+{
+  if($cont == 1)
+  {
+        echo "<tr>";
+  }
+?>
+        <td width="235" align="center" style="background:url(imagens/bg_1.bmp);" class="textfont">
+        <form action="detalhesprod.php" method="post">
+      
+		<?php
+
+$caminho = $res['imagem'];
+
+$caminho = explode("\\",$caminho);
+
+//Array ( [0] => C: [1] => htdocs [2] => shield [3] => imagens [4] => img.jpg )
+unset($caminho[0], $caminho[1], $caminho[2], $caminho[3]); //exclui os indices do caminho que eu nao quero
+
+$caminho = implode("\\", $caminho); //remonta o caminho.
+
+
+?>
+        
+       
+      
+        
+        <img src="<?php echo ($caminho);?>" width="160" height="230" /><br /><br />
+        
+		
+		<b><?php echo $res['descricao'];
+	
+		?><br /></b>
+        
+       R$<font size="+1" color="#00CC33"> <?php echo $res['valor'];?> </font><p>
+         <img src="parts/botaocomprar.png" width="85" height="40" />&nbsp;&nbsp;<input type="image" src="parts/botaodetalhes.png" width="85" height="40" /> </p>
+        
+        
+        </form>
+        </td>
+<?php
+  if($cont == $numeroColunas)
+  {
+        echo "</tr>";
+        $cont = 1;
+  } else
+  {
+        $cont++;
+  }
+}
+?>
+</table>
+<center>
+<?php
+include "paginacao.php";
+?>
+</center>
+
+
+---------------------------------------------------
